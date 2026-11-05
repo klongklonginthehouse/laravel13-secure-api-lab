@@ -1,9 +1,9 @@
 # Module 5 — Lesson 1 Submission
 
-**Name:** [Your Name]
-**Section:** [Your Section]
+**Name:** Jave F. Gajelloma
+**Section:** BSICT 3B
 **Course:** Integrative Programming & Technologies II
-**Repository:** https://github.com/YOUR_USERNAME/laravel13-secure-api-lab
+**Repository:** https://github.com/klongklonginthehouse/laravel13-secure-api-lab
 
 ## Screenshots checklist
 
