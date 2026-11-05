@@ -1,0 +1,8 @@
+﻿{
+    "test":  3,
+    "name":  "login",
+    "method":  "POST",
+    "url":  "http://127.0.0.1:8000/api/login",
+    "status":  200,
+    "body":  "{\"message\":\"Login successful\",\"token_type\":\"Bearer\",\"access_token\":\"\u003cREDACTED_ACCESS_TOKEN\u003e\"}"
+}

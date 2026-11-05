@@ -1,0 +1,66 @@
+﻿[
+    {
+        "test":  1,
+        "name":  "public-api",
+        "method":  "GET",
+        "url":  "http://127.0.0.1:8000/api/hello",
+        "status":  200,
+        "body":  "{\"message\":\"Welcome to the Laravel 13 API\"}"
+    },
+    {
+        "test":  2,
+        "name":  "register",
+        "method":  "POST",
+        "url":  "http://127.0.0.1:8000/api/register",
+        "status":  201,
+        "body":  "{\"message\":\"Registration successful\",\"user\":{\"id\":1,\"name\":\"Juan Dela Cruz\",\"email\":\"juan@example.com\"}}"
+    },
+    {
+        "test":  3,
+        "name":  "login",
+        "method":  "POST",
+        "url":  "http://127.0.0.1:8000/api/login",
+        "status":  200,
+        "body":  "{\"message\":\"Login successful\",\"token_type\":\"Bearer\",\"access_token\":\"\u003cREDACTED_ACCESS_TOKEN\u003e\"}"
+    },
+    {
+        "test":  4,
+        "name":  "profile-no-token",
+        "method":  "GET",
+        "url":  "http://127.0.0.1:8000/api/profile",
+        "status":  401,
+        "body":  "{\"message\":\"Unauthenticated.\"}"
+    },
+    {
+        "test":  5,
+        "name":  "profile-with-token",
+        "method":  "GET",
+        "url":  "http://127.0.0.1:8000/api/profile",
+        "status":  200,
+        "body":  "{\"user\":{\"id\":1,\"name\":\"Juan Dela Cruz\",\"email\":\"juan@example.com\"}}"
+    },
+    {
+        "test":  6,
+        "name":  "invalid-login",
+        "method":  "POST",
+        "url":  "http://127.0.0.1:8000/api/login",
+        "status":  422,
+        "body":  "{\"message\":\"Invalid credentials.\",\"errors\":{\"email\":[\"Invalid credentials.\"]}}"
+    },
+    {
+        "test":  7,
+        "name":  "logout",
+        "method":  "POST",
+        "url":  "http://127.0.0.1:8000/api/logout",
+        "status":  200,
+        "body":  "{\"message\":\"Logged out successfully\"}"
+    },
+    {
+        "test":  8,
+        "name":  "revoked-token",
+        "method":  "GET",
+        "url":  "http://127.0.0.1:8000/api/profile",
+        "status":  401,
+        "body":  "{\"message\":\"Unauthenticated.\"}"
+    }
+]

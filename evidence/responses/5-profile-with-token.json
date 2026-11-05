@@ -1,0 +1,8 @@
+﻿{
+    "test":  5,
+    "name":  "profile-with-token",
+    "method":  "GET",
+    "url":  "http://127.0.0.1:8000/api/profile",
+    "status":  200,
+    "body":  "{\"user\":{\"id\":1,\"name\":\"Juan Dela Cruz\",\"email\":\"juan@example.com\"}}"
+}

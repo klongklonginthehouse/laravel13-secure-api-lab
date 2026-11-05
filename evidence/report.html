@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Module 5 - Laravel 13 Secure API - live test evidence</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 40px; background: #14161a; color: #e6e8eb;
+         font-family: "Segoe UI", system-ui, sans-serif; }
+  h1 { font-size: 22px; margin: 0 0 6px; }
+  .sub { color: #9aa3ad; font-size: 13px; margin-bottom: 28px; }
+  .card { width: 960px; background: #1c1f24; border: 1px solid #2b3138;
+          border-radius: 10px; padding: 22px 24px; margin-bottom: 28px; }
+  .card header { display: flex; align-items: baseline; gap: 14px; margin-bottom: 16px; }
+  .card h2 { font-size: 17px; margin: 0; font-weight: 600; }
+  .num { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: #7d8792; }
+  .request, .response { background: #14171c; border: 1px solid #262c33; border-radius: 8px;
+                        padding: 14px 16px; margin-bottom: 12px; font-size: 13px; }
+  .line { margin: 4px 0; }
+  .key { color: #8b96a3; }
+  .method { display: inline-block; min-width: 58px; text-align: center; font-weight: 700;
+            font-size: 11px; letter-spacing: .06em; padding: 3px 8px; border-radius: 4px; }
+  .m-get { background: #123c2a; color: #6ee7a0; }
+  .m-post { background: #3a2f0d; color: #f6c445; }
+  .url { font-family: Consolas, monospace; color: #cfd6de; }
+  .status { font-weight: 700; font-family: Consolas, monospace; }
+  .status.ok { color: #6ee7a0; }
+  .status.bad { color: #ff7b72; }
+  pre { margin: 10px 0 0; font-family: Consolas, monospace; font-size: 12.5px;
+        line-height: 1.5; color: #dfe4ea; white-space: pre-wrap; word-break: break-word; }
+  footer { color: #7d8792; font-size: 12px; margin-top: 8px; }
+</style>
+</head>
+<body>
+<h1>Module 5 - Laravel 13 Secure API - live test evidence</h1>
+<div class="sub">Laravel Framework 13.40.0 &middot; Sanctum personal access tokens &middot; MySQL 10.4 (InnoDB) &middot; captured from http://127.0.0.1:8000 &middot; tokens redacted</div>
+  <section class="card" id="test-1">
+    <header>
+      <span class="num">Test 1</span>
+      <h2>Public endpoint</h2>
+    </header>
+    <div class="request">
+      <div class="line"><span class="method m-get">GET</span> <span class="url">http://127.0.0.1:8000/api/hello</span></div>
+      <div class="line"><span class="key">Accept:</span> application/json</div>
+      <div class="line"><span class="key">Authorization:</span> No Auth</div>
+    </div>
+    <div class="response">
+      <div class="line"><span class="key">Status:</span> <span class="status ok">200 as expected</span></div>
+      <pre>{
+    &quot;message&quot;:  &quot;Welcome to the Laravel 13 API&quot;
+}</pre>
+    </div>
+  </section>
+  <section class="card" id="test-2">
+    <header>
+      <span class="num">Test 2</span>
+      <h2>Register a new user</h2>
+    </header>
+    <div class="request">
+      <div class="line"><span class="method m-post">POST</span> <span class="url">http://127.0.0.1:8000/api/register</span></div>
+      <div class="line"><span class="key">Accept:</span> application/json &nbsp; <span class="key">Content-Type:</span> application/json</div>
+      <div class="line"><span class="key">Authorization:</span> No Auth</div>
+    </div>
+    <div class="response">
+      <div class="line"><span class="key">Status:</span> <span class="status ok">201 as expected</span></div>
+      <pre>{
+    &quot;message&quot;:  &quot;Registration successful&quot;,
+    &quot;user&quot;:  {
+                 &quot;id&quot;:  1,
+                 &quot;name&quot;:  &quot;Juan Dela Cruz&quot;,
+                 &quot;email&quot;:  &quot;juan@example.com&quot;
+             }
+}</pre>
+    </div>
+  </section>
+  <section class="card" id="test-3">
+    <header>
+      <span class="num">Test 3</span>
+      <h2>Login and obtain an access token</h2>
+    </header>
+    <div class="request">
+      <div class="line"><span class="method m-post">POST</span> <span class="url">http://127.0.0.1:8000/api/login</span></div>
+      <div class="line"><span class="key">Accept:</span> application/json &nbsp; <span class="key">Content-Type:</span> application/json</div>
+      <div class="line"><span class="key">Authorization:</span> No Auth</div>
+    </div>
+    <div class="response">
+      <div class="line"><span class="key">Status:</span> <span class="status ok">200 as expected</span></div>
+      <pre>{
+    &quot;message&quot;:  &quot;Login successful&quot;,
+    &quot;token_type&quot;:  &quot;Bearer&quot;,
+    &quot;access_token&quot;:  &quot;\u003cREDACTED_ACCESS_TOKEN\u003e&quot;
+}</pre>
+    </div>
+  </section>
+  <section class="card" id="test-4">
+    <header>
+      <span class="num">Test 4</span>
+      <h2>Protected profile without a token</h2>
+    </header>
+    <div class="request">
+      <div class="line"><span class="method m-get">GET</span> <span class="url">http://127.0.0.1:8000/api/profile</span></div>
+      <div class="line"><span class="key">Accept:</span> application/json</div>
+      <div class="line"><span class="key">Authorization:</span> No Auth</div>
+    </div>
+    <div class="response">
+      <div class="line"><span class="key">Status:</span> <span class="status ok">401 as expected</span></div>
+      <pre>{
+    &quot;message&quot;:  &quot;Unauthenticated.&quot;
+}</pre>
+    </div>
+  </section>
+  <section class="card" id="test-5">
+    <header>
+      <span class="num">Test 5</span>
+      <h2>Protected profile with a Bearer token</h2>
+    </header>
+    <div class="request">
+      <div class="line"><span class="method m-get">GET</span> <span class="url">http://127.0.0.1:8000/api/profile</span></div>
+      <div class="line"><span class="key">Accept:</span> application/json</div>
+      <div class="line"><span class="key">Authorization:</span> Bearer &lt;REDACTED_ACCESS_TOKEN&gt;</div>
+    </div>
+    <div class="response">
+      <div class="line"><span class="key">Status:</span> <span class="status ok">200 as expected</span></div>
+      <pre>{
+    &quot;user&quot;:  {
+                 &quot;id&quot;:  1,
+                 &quot;name&quot;:  &quot;Juan Dela Cruz&quot;,
+                 &quot;email&quot;:  &quot;juan@example.com&quot;
+             }
+}</pre>
+    </div>
+  </section>
+  <section class="card" id="test-6">
+    <header>
+      <span class="num">Test 6</span>
+      <h2>Login with an incorrect password</h2>
+    </header>
+    <div class="request">
+      <div class="line"><span class="method m-post">POST</span> <span class="url">http://127.0.0.1:8000/api/login</span></div>
+      <div class="line"><span class="key">Accept:</span> application/json &nbsp; <span class="key">Content-Type:</span> application/json</div>
+      <div class="line"><span class="key">Authorization:</span> No Auth</div>
+    </div>
+    <div class="response">
+      <div class="line"><span class="key">Status:</span> <span class="status ok">422 as expected</span></div>
+      <pre>{
+    &quot;message&quot;:  &quot;Invalid credentials.&quot;,
+    &quot;errors&quot;:  {
+                   &quot;email&quot;:  [
+                                 &quot;Invalid credentials.&quot;
+                             ]
+               }
+}</pre>
+    </div>
+  </section>
+  <section class="card" id="test-7">
+    <header>
+      <span class="num">Test 7</span>
+      <h2>Logout and revoke the token</h2>
+    </header>
+    <div class="request">
+      <div class="line"><span class="method m-post">POST</span> <span class="url">http://127.0.0.1:8000/api/logout</span></div>
+      <div class="line"><span class="key">Accept:</span> application/json &nbsp; <span class="key">Content-Type:</span> application/json</div>
+      <div class="line"><span class="key">Authorization:</span> Bearer &lt;REDACTED_ACCESS_TOKEN&gt;</div>
+    </div>
+    <div class="response">
+      <div class="line"><span class="key">Status:</span> <span class="status ok">200 as expected</span></div>
+      <pre>{
+    &quot;message&quot;:  &quot;Logged out successfully&quot;
+}</pre>
+    </div>
+  </section>
+  <section class="card" id="test-8">
+    <header>
+      <span class="num">Test 8</span>
+      <h2>Profile request with the revoked token</h2>
+    </header>
+    <div class="request">
+      <div class="line"><span class="method m-get">GET</span> <span class="url">http://127.0.0.1:8000/api/profile</span></div>
+      <div class="line"><span class="key">Accept:</span> application/json</div>
+      <div class="line"><span class="key">Authorization:</span> Bearer &lt;REDACTED_ACCESS_TOKEN&gt;</div>
+    </div>
+    <div class="response">
+      <div class="line"><span class="key">Status:</span> <span class="status ok">401 as expected</span></div>
+      <pre>{
+    &quot;message&quot;:  &quot;Unauthenticated.&quot;
+}</pre>
+    </div>
+  </section>
+<footer>Responses captured from the running application with curl; the same requests are provided as a Postman collection in /postman.</footer>
+</body>
+</html>
