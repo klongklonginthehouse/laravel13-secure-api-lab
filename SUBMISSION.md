@@ -1,4 +1,4 @@
-# Module 5 — Lesson 1 Submission
+# Module 5 Lesson 1 Submission
 
 **Name:** Jave F. Gajelloma
 **Section:** BSICT 3B
